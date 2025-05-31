@@ -1,0 +1,34 @@
+{
+	"name": "nailr-backend",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node app.js",
+		"dev": "nodemon app.js"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"bcryptjs": "^3.0.2",
+		"chalk": "^4.1.2",
+		"config": "^3.3.12",
+		"cors": "^2.8.5",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.5.0",
+		"express": "^5.1.0",
+		"express-rate-limit": "^7.5.0",
+		"joi": "^17.13.3",
+		"jsonwebtoken": "^9.0.2",
+		"lodash": "^4.17.21",
+		"mongoose": "^8.14.2",
+		"morgan": "^1.10.0",
+		"multer": "^2.0.0",
+		"socket.io": "^4.8.1"
+	},
+	"devDependencies": {
+		"nodemon": "^3.1.10"
+	}
+}

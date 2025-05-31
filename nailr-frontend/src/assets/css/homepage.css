@@ -1,0 +1,18 @@
+.homepage-header {
+	background: #fce9e6;
+	background: linear-gradient(
+		155deg,
+		rgba(252, 233, 230, 1) 0%,
+		rgba(235, 240, 241, 1) 25%,
+		rgba(241, 238, 237, 1) 75%,
+		rgba(252, 233, 230, 1) 100%
+	);
+}
+
+.homepage-header h2 {
+	font-weight: 700;
+}
+
+.homepage-header p {
+	font-weight: 500;
+}

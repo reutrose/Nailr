@@ -1,0 +1,24 @@
+@import "/node_modules/bootstrap/scss/functions";
+@import "/node_modules/bootstrap/scss/variables";
+
+$custom-colors: (
+	"prime": #5271ff,
+	"accent": #a8dadc,
+	"soft-red": #f4a9a8,
+	"text-dark": #6b4c3b,
+	"invisible-gray": #e5e5e5,
+
+	"sky": #38bdf8,
+	"sky-subtle": #7bdff2,
+	"accent-red": #ff6b6b,
+	"canvas": #f8edeb,
+	"surface": #fce9e6,
+	"eggshell": #fcf7f3,
+	"caucasion": #f8edeb,
+	"muted": #ebf0f1,
+	"background": #ffefd4,
+);
+
+$theme-colors: map-merge($theme-colors, $custom-colors);
+
+@import "/node_modules/bootstrap/scss/bootstrap.scss";

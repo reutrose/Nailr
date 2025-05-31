@@ -1,0 +1,4 @@
+node_modules/
+.env
+logs/logFiles/
+public/uploads/avatars/

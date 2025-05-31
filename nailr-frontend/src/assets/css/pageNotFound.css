@@ -1,0 +1,33 @@
+.not-found-page {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 30px;
+}
+
+.not-found-container {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.not-found-message {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 600px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+	text-align: start;
+	padding: 20px;
+}
+
+.not-found-paragraph {
+	padding: 30px;
+	text-align: center;
+}
+
+.not-found-message div ul {
+	list-style-type: none;
+}
