@@ -60,6 +60,8 @@ npm run dev
 
 - **Request Rate Limiting:** A backend rate limiter restricts each IP address to a maximum of 1000 requests per 24 hours. If the limit is reached, users are redirected to a dedicated "Too Many Requests" page.
 
+- **Profile Picture Management:** Users can upload, update, and display profile avatars using file upload via Multer. Avatars are securely stored and displayed throughout the platform.
+
 ## 📖 Documentation
 
 - See [nailr-backend/README.md](./nailr-backend/README.md) for API routes and backend logic
