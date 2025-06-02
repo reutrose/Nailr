@@ -9,6 +9,7 @@ const chalk = require("chalk");
 const { loggerMiddleware } = require("./logger/loggerService");
 const path = require("path");
 const createInitialData = require("./utils/initialData");
+const dailyLimiter = require("./middlewares/rateLimiter");
 require("dotenv").config();
 
 const app = express();
@@ -40,6 +41,7 @@ io.on("connection", (socket) => {
 });
 
 app.use(corsMiddleware);
+app.use(dailyLimiter);
 app.use(express.json());
 app.use(express.static("./public"));
 app.use("/uploads", express.static(path.join(__dirname, "public", "uploads")));

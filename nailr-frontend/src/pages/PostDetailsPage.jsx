@@ -19,6 +19,7 @@ function PostDetailsPage() {
 
 				if (postData.userId) {
 					const user = await getUserById(postData.userId);
+					if (!user) return;
 					setAuthor({
 						name: `${user.firstName} ${user.lastName}`,
 						avatar: user.avatar || "/default-avatar.png",

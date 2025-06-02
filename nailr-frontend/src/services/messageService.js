@@ -1,4 +1,6 @@
 import { getTokenFromStorage } from "./usersService";
+import { checkRateLimit } from "./checkRateLimit";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const fetchMessagesByConversation = async (conversationId, token) => {
@@ -8,6 +10,7 @@ export const fetchMessagesByConversation = async (conversationId, token) => {
 				"x-auth-token": token,
 			},
 		});
+		if (await checkRateLimit(response)) return;
 		if (!response.ok) throw new Error("Failed to fetch messages");
 		return await response.json();
 	} catch (err) {
@@ -30,6 +33,7 @@ export const sendMessage = async (conversationId, text, imageFile, token) => {
 			},
 			body: formData,
 		});
+		if (await checkRateLimit(response)) return;
 		if (!response.ok) throw new Error("Failed to send message");
 		return await response.json();
 	} catch (err) {
@@ -46,11 +50,10 @@ export const getUserConversations = async (token) => {
 				"x-auth-token": token,
 			},
 		});
-
+		if (await checkRateLimit(response)) return;
 		if (!response.ok) {
 			throw new Error("Failed to fetch conversations");
 		}
-
 		const data = await response.json();
 		return data;
 	} catch (err) {
@@ -69,7 +72,7 @@ export const createConversationIfNotExists = async (participantId) => {
 		},
 		body: JSON.stringify({ participantId }),
 	});
-
+	if (await checkRateLimit(response)) return;
 	if (!response.ok) throw new Error("Failed to initiate conversation");
 	return await response.json();
 };

@@ -16,6 +16,7 @@ function MyProfilePage() {
 	const refreshProfile = async (id) => {
 		try {
 			const updatedProfile = await getUserById(id);
+			if (!updatedProfile) return;
 			setProfileUser(updatedProfile);
 		} catch (err) {
 			console.error("Failed to refresh business:", err);
@@ -25,6 +26,7 @@ function MyProfilePage() {
 	useEffect(() => {
 		const fetchProfile = async () => {
 			let profile = await getUserById(id);
+			if (!profile) return;
 			setProfileUser(profile);
 		};
 

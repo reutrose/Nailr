@@ -1,3 +1,5 @@
+import { checkRateLimit } from "./checkRateLimit";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const createReview = async (token, comment, rating, businessId) => {
@@ -21,6 +23,8 @@ export const createReview = async (token, comment, rating, businessId) => {
 			`${API_URL}/reviews/business/${businessId}`,
 			requestOptions
 		);
+
+		if (await checkRateLimit(response)) return;
 
 		if (!response.ok) {
 			const errorText = await response.text();
@@ -46,6 +50,7 @@ export const getAllReviews = async () => {
 
 	try {
 		const response = await fetch(`${API_URL}/reviews/`, requestOptions);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
@@ -67,6 +72,7 @@ export const getReviewsByBusinessId = async (businessId) => {
 			`${API_URL}/reviews/business/${businessId}`,
 			requestOptions
 		);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {

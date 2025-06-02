@@ -54,7 +54,11 @@ npm install
 npm run dev
 ```
 
-> Make sure both servers run concurrently (`frontend` on `localhost:5173`, `backend` on `localhost:8181`).
+## 🔒 Bonus Features
+
+- **Login Inactivity Timeout:** Users are automatically logged out after 4 hours of inactivity. Movement and keyboard interaction reset the timer, and a toast notification informs users when they are logged out.
+
+- **Request Rate Limiting:** A backend rate limiter restricts each IP address to a maximum of 100 requests per 24 hours. If the limit is reached, users are redirected to a dedicated "Too Many Requests" page.
 
 ## 📖 Documentation
 

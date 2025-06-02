@@ -1,3 +1,5 @@
+import { checkRateLimit } from "./checkRateLimit";
+
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const createPost = async (formData, token) => {
@@ -11,6 +13,7 @@ export const createPost = async (formData, token) => {
 
 	try {
 		const response = await fetch(`${API_URL}/posts/`, requestOptions);
+		if (await checkRateLimit(response)) return;
 
 		if (!response.ok) {
 			const errorText = await response.text();
@@ -40,6 +43,7 @@ export const getAllRequestPosts = async () => {
 			`${API_URL}/posts/?postType=request`,
 			requestOptions
 		);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
@@ -61,6 +65,7 @@ export const getAllShowcasePosts = async () => {
 			`${API_URL}/posts/?postType=showcase`,
 			requestOptions
 		);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
@@ -79,6 +84,7 @@ export const getPostById = async (id) => {
 
 	try {
 		const response = await fetch(`${API_URL}/posts/${id}`, requestOptions);
+		if (await checkRateLimit(response)) return;
 		let result = await response.json();
 		return result;
 	} catch (error) {
@@ -100,6 +106,7 @@ export const getPostsByUser = async (userId) => {
 			`${API_URL}/posts/user/${userId}`,
 			requestOptions
 		);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
@@ -121,6 +128,7 @@ export const getPostsByBusiness = async (businessId) => {
 			`${API_URL}/posts/business/${businessId}`,
 			requestOptions
 		);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
@@ -155,6 +163,7 @@ export const updatePostById = async (token, id, data) => {
 
 	try {
 		const response = await fetch(`${API_URL}/posts/${id}`, requestOptions);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
@@ -174,6 +183,7 @@ export const deletePostById = async (postId, token) => {
 
 	try {
 		const response = await fetch(`${API_URL}/posts/${postId}`, requestOptions);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {

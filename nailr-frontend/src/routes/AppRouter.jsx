@@ -23,11 +23,13 @@ import AboutNailr from "../pages/AboutNailr";
 import PrivacyPolicy from "../pages/PrivacyPolicy";
 import TermsOfService from "../pages/TermsOfService";
 import ContactUs from "../pages/ContactUs";
+import TooManyRequests from "../pages/TooManyRequests";
 
 const AppRouter = () => {
 	return (
 		<div className="container-fluid m-0 p-0">
 			<Routes>
+				<Route path="/too-many-requests" element={<TooManyRequests />} />
 				<Route path="/" element={<HomePage />} />
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/register" element={<RegisterPage />} />

@@ -1,4 +1,5 @@
 import axios from "axios";
+import { checkRateLimit } from "./checkRateLimit";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -82,6 +83,7 @@ export const getUserById = async (id) => {
 
 	try {
 		const response = await fetch(`${API_URL}/users/${id}`, requestOptions);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
@@ -98,6 +100,7 @@ export const updateUserById = async (id, formData, token) => {
 			},
 			body: formData,
 		});
+		if (await checkRateLimit(response)) return;
 
 		const contentType = response.headers.get("content-type");
 
@@ -139,6 +142,7 @@ export const uploadAvatar = async (token, userId, fileInput) => {
 			`${API_URL}/users/${userId}/avatar`,
 			requestOptions
 		);
+		if (await checkRateLimit(response)) return;
 		const result = await response.json();
 		return result;
 	} catch (error) {
