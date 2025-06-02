@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getAllRequestPosts } from "../services/postService";
 import OpenProjectSearch from "../components/posts/OpenProjectSearch";
 import OpenProjectBox from "../components/posts/OpenProjectBox";
@@ -10,7 +10,6 @@ function OpenProjects() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 	const [professionFilter, setProfessionFilter] = useState("");
-	const { user } = useContext(AuthContext);
 
 	const fetchPosts = useCallback(async () => {
 		try {
@@ -26,10 +25,8 @@ function OpenProjects() {
 	}, []);
 
 	useEffect(() => {
-		if (user?._id) {
-			fetchPosts();
-		}
-	}, [user?._id, fetchPosts]);
+		fetchPosts();
+	}, [fetchPosts]);
 
 	const handleSearch = useCallback(
 		(query = "", profession = "") => {

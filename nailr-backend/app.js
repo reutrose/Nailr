@@ -8,6 +8,7 @@ const { handleError } = require("./utils/handleErrors");
 const chalk = require("chalk");
 const { loggerMiddleware } = require("./logger/loggerService");
 const path = require("path");
+const createInitialData = require("./utils/initialData");
 require("dotenv").config();
 
 const app = express();
@@ -53,4 +54,5 @@ const PORT = process.env.PORT || 8181;
 server.listen(PORT, () => {
 	console.log(chalk.bgGreen.black(`🚀 Server listening on port: ${PORT}`));
 	connectToDB();
+	createInitialData();
 });

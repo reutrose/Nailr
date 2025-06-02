@@ -39,7 +39,7 @@ router.post("/", auth, upload.array("images"), async (req, res) => {
 		}
 
 		const images = req.files?.map(
-			(file) => `data:${file.mimetype};base64,${file.buffer.toString("base64")}`
+			(file) => `/uploads/posts/${file.originalname}`
 		);
 
 		const postData = {

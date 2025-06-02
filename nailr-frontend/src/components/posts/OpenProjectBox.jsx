@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { formatRelativeTime } from "../../services/timeService";
 import ImageViewModal from "./ImageViewModal";
 import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../contexts/AuthContext";
 
 function OpenProjectBox({ project }) {
+	const API_URL = import.meta.env.VITE_API_URL;
 	const [imageSelected, setImageSelected] = useState(false);
 	const navigate = useNavigate();
+	const { user } = useContext(AuthContext);
 
 	const handleContact = () => {
 		navigate("/inbox", {
@@ -41,7 +44,7 @@ function OpenProjectBox({ project }) {
 								>
 									<img
 										key={index}
-										src={img}
+										src={API_URL + img}
 										alt="project"
 										style={{
 											width: "60px",
@@ -78,14 +81,16 @@ function OpenProjectBox({ project }) {
 				)}
 			</div>
 
-			<div className="pt-2 d-flex justify-content-end">
-				<button
-					className="btn btn-danger btn-sm rounded-pill px-3"
-					onClick={handleContact}
-				>
-					<i className="fa-solid fa-message me-2"></i>Contact
-				</button>
-			</div>
+			{user && (
+				<div className="pt-2 d-flex justify-content-end">
+					<button
+						className="btn btn-danger btn-sm rounded-pill px-3"
+						onClick={handleContact}
+					>
+						<i className="fa-solid fa-message me-2"></i>Contact
+					</button>
+				</div>
+			)}
 		</div>
 	);
 }

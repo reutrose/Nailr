@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { professions } from "../services/businessService";
+import { Eraser } from "lucide-react";
 
 function CrafterSearch({ onFilter }) {
 	const [form, setForm] = useState({
@@ -27,7 +29,7 @@ function CrafterSearch({ onFilter }) {
 
 	return (
 		<form className="row g-2 align-items-end mb-4">
-			<div className="col-12 col-sm-6 col-md-3">
+			<div className="col-12 col-md-3">
 				<label className="form-label">Search</label>
 				<input
 					type="text"
@@ -38,7 +40,7 @@ function CrafterSearch({ onFilter }) {
 					placeholder="Name, skills, or location"
 				/>
 			</div>
-			<div className="col-6 col-md-2">
+			<div className="col-6 col-md-3">
 				<label className="form-label">Profession</label>
 				<select
 					name="profession"
@@ -46,14 +48,14 @@ function CrafterSearch({ onFilter }) {
 					onChange={handleChange}
 					className="form-select"
 				>
-					<option value="">All Professions</option>
-					<option>Carpenter</option>
-					<option>Painter</option>
-					<option>Welder</option>
-					<option>Electrician</option>
+					{professions &&
+						professions.length &&
+						professions.map((profession, index) => {
+							return <option key={index}>{profession}</option>;
+						})}
 				</select>
 			</div>
-			<div className="col-6 col-md-2">
+			<div className="col-6 col-md-3">
 				<label className="form-label">Location</label>
 				<input
 					type="text"
@@ -64,16 +66,15 @@ function CrafterSearch({ onFilter }) {
 					placeholder="City or area"
 				/>
 			</div>
-			<div className="col-12 col-md-3">
-				<label className="form-label">Skills</label>
-				<input
-					type="text"
-					name="skills"
-					value={form.skills}
-					onChange={handleChange}
-					className="form-control"
-					placeholder="e.g. Decking, Wall Art"
-				/>
+			<div
+				className="col-12 col-md-3"
+				onClick={() => {
+					setForm({ search: "", profession: "", location: "", skills: "" });
+				}}
+			>
+				<button className="btn btn-outline-accent-red w-100">
+					<Eraser size={16} /> Clear
+				</button>
 			</div>
 		</form>
 	);

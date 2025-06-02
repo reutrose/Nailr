@@ -9,11 +9,6 @@ const normalizeUser = async (userInput) => {
 		location = "",
 		dateOfBirth = "",
 		gender = "",
-		isCrafter = false,
-		businessName = "",
-		profession = "",
-		description = "",
-		logo = "",
 	} = userInput;
 
 	return {
@@ -22,7 +17,7 @@ const normalizeUser = async (userInput) => {
 		firstName: firstName?.trim(),
 		lastName: lastName?.trim(),
 		bio: bio?.trim(),
-		avatar: avatar?.trim(),
+		avatar: "/static/profileAvatar.png",
 		location: location?.trim(),
 		dateOfBirth: dateOfBirth?.trim(),
 		gender: gender?.trim(),

@@ -10,7 +10,7 @@ function BusinessCard({ business, viewer }) {
 		<>
 			<div
 				className="container-fluid m-0 p-0 bg-white rounded shadow-sm p-4"
-				style={{ height: "170px" }}
+				style={{ height: "200px" }}
 			>
 				<div className="container m-0 p-0 d-flex flex-column justify-content-between align-items-start h-100">
 					<div
@@ -40,6 +40,7 @@ function BusinessCard({ business, viewer }) {
 								>
 									{business.businessName}
 								</p>
+
 								<p
 									className="m-0 p-0"
 									style={{
@@ -53,21 +54,20 @@ function BusinessCard({ business, viewer }) {
 							</div>
 						</div>
 					</div>
-					<div className="p-0 py-3">
+					<div className="p-0 py-1">
 						<p style={{ fontSize: "0.8rem" }}>{business.description}</p>
 					</div>
 					{isOwner && (
-						<div className="container-fluid m-0 p-0 d-flex justify-content-end align-items-center">
-							<button
-								className="btn btn-accent-red text-white fw-bold rounded-1"
-								style={{ fontSize: "0.7rem", padding: "2px 8px 2px 8px" }}
-								onClick={() => {
-									navigate(`/crafters/edit/${business._id}`);
-								}}
-							>
-								<SquarePen size={14} /> Edit
-							</button>
-						</div>
+						<button
+							className="btn btn-accent-red text-white fw-bold rounded-1 mx-2"
+							style={{ fontSize: "0.7rem", padding: "2px 8px 2px 8px" }}
+							onClick={() => {
+								navigate(`/crafters/edit/${business._id}`);
+							}}
+						>
+							<SquarePen size={14} />
+							&nbsp;Edit
+						</button>
 					)}
 				</div>
 			</div>

@@ -23,7 +23,11 @@ function MessageBubble({ message }) {
 					position: "relative",
 				}}
 			>
-				{message.text && <div>{message.text}</div>}
+				{message.text && (
+					<div style={{ fontSize: "clamp(0.8rem, 0.75rem + 0.25vw, 1rem)" }}>
+						{message.text}
+					</div>
+				)}
 
 				{message.image && (
 					<img
@@ -38,7 +42,7 @@ function MessageBubble({ message }) {
 					className={`mt-2 small ${
 						isOwnMessage ? "text-light opacity-75" : "text-muted"
 					}`}
-					style={{ fontSize: "0.75rem" }}
+					style={{ fontSize: "0.6rem" }}
 				>
 					{formatDistanceToNow(new Date(message.createdAt), {
 						addSuffix: true,

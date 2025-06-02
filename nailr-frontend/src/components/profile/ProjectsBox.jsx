@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { SquarePlus } from "lucide-react";
+import { CirclePlus, SquarePlus } from "lucide-react";
 import PostBox from "./PostBox";
 import { getPostsByUser } from "../../services/postService";
 import CreatePostModal from "../posts/CreatePostModal";
@@ -28,7 +28,7 @@ function ProjectsBox({ profileOf, viewer }) {
 
 	return (
 		<>
-			<div className="py-4">
+			<div className="pt-4">
 				<div className="row">
 					<div className="col-9 d-flex justify-content-start align-items-center">
 						<h4 className="fw-semibold m-0 p-0">Projects I Need Help With</h4>
@@ -41,8 +41,7 @@ function ProjectsBox({ profileOf, viewer }) {
 									className="btn btn-sky-subtle p-0 py-1 px-3"
 									onClick={() => setShowModal(true)}
 								>
-									<i className="fa-solid fa-plus"></i>
-									&nbsp;Add Project
+									<CirclePlus />
 								</button>
 							</div>
 						)}

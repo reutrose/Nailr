@@ -23,6 +23,18 @@ function Footer() {
 									textDecoration: "none",
 									fontSize: "0.7rem",
 								}}
+								to={"/about"}
+							>
+								About
+							</Link>
+							<Link
+								className="m-0 p-0 small px-3 text-center w-100"
+								style={{
+									color: "inherit",
+									textDecoration: "none",
+									fontSize: "0.7rem",
+								}}
+								to={"privacy-policy"}
 							>
 								Privacy Policy
 							</Link>
@@ -33,6 +45,7 @@ function Footer() {
 									textDecoration: "none",
 									fontSize: "0.7rem",
 								}}
+								to={"/terms-of-service"}
 							>
 								Terms of Service
 							</Link>
@@ -43,6 +56,7 @@ function Footer() {
 									textDecoration: "none",
 									fontSize: "0.7rem",
 								}}
+								to="contact-us"
 							>
 								Contact
 							</Link>

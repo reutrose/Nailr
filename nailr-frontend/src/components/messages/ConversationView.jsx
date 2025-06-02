@@ -86,11 +86,13 @@ function ConversationView({ conversation, socket }) {
 							type="text"
 							className="form-control"
 							placeholder="Type a message..."
+							style={{ fontSize: "clamp(0.6rem, 0.5rem + 0.5vw, 1rem)" }}
 						/>
 						<button
 							type="submit"
 							className="btn btn-danger"
 							disabled={isSubmitting}
+							style={{ fontSize: "clamp(0.6rem, 0.5rem + 0.5vw, 1rem)" }}
 						>
 							Send
 						</button>

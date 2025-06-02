@@ -85,7 +85,7 @@ function Crafters() {
 						<div className="col" key={crafter._id}>
 							<div
 								className="card border-0 rounded-4 shadow-sm"
-								style={{ height: "350px" }}
+								style={{ height: "350px", minWidth: "250px" }}
 							>
 								<div className="card-body d-flex flex-column justify-content-between">
 									<div className="d-flex align-items-center mb-3">

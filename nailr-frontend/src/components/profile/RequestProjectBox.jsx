@@ -3,6 +3,8 @@ import { deletePostById } from "../../services/postService";
 import { formatRelativeTime } from "../../services/timeService";
 import AuthToken from "../../contexts/AuthContext";
 import DeleteRequestProjectModal from "./DeleteRequestProjectModal";
+import { useNavigate } from "react-router-dom";
+import { CircleCheckBig } from "lucide-react";
 
 function RequestProjectBox({ post, profileUser, onPostDeleted }) {
 	const { userId, title, description, createdAt } = post;
@@ -10,11 +12,18 @@ function RequestProjectBox({ post, profileUser, onPostDeleted }) {
 	const { user } = useContext(AuthToken);
 	const isOwner = userId == user._id;
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
+	const navigate = useNavigate();
 
 	const handleDelete = async () => {
 		await deletePostById(post._id, user.token);
 		setShowDeleteModal(false);
 		if (onPostDeleted) onPostDeleted();
+	};
+
+	const handleContact = () => {
+		navigate("/inbox", {
+			state: { userToContactId: profileUser._id },
+		});
 	};
 
 	return (
@@ -29,6 +38,7 @@ function RequestProjectBox({ post, profileUser, onPostDeleted }) {
 							<button
 								className="btn btn-surface py-0 mx-1 fw-semibold rounded-pill"
 								style={{ fontSize: "0.8rem" }}
+								onClick={handleContact}
 							>
 								Help {firstName}
 							</button>
@@ -36,10 +46,10 @@ function RequestProjectBox({ post, profileUser, onPostDeleted }) {
 							{isOwner && (
 								<button
 									onClick={() => setShowDeleteModal(true)}
-									className="btn btn-sky py-0 mx-1 fw-semibold rounded-pill"
+									className="btn btn-outline-sky py-0 mx-1 fw-semibold border-0"
 									style={{ fontSize: "0.8rem" }}
 								>
-									Mark as Done
+									<CircleCheckBig />
 								</button>
 							)}
 						</div>

@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
-import SearchPage from "../pages/SearchPage";
 import PostDetailsPage from "../pages/PostDetailsPage";
 import CrafterProfilePage from "../pages/CrafterProfilePage";
 import MyProfilePage from "../pages/MyProfilePage";
@@ -10,7 +9,6 @@ import EditProfilePage from "../pages/EditProfilePage";
 import UploadAvatarPage from "../pages/UploadAvatarPage";
 import NewPostPage from "../pages/NewPostPage";
 import EditPostPage from "../pages/EditPostPage";
-import ConversationsPage from "../pages/ConversationsPage";
 import MessagesPage from "../pages/MessagesPage";
 import NotificationPage from "../pages/NotificationPage";
 import AuthGuard from "../components/auth/AuthGuard";
@@ -19,6 +17,12 @@ import Crafters from "../pages/Crafters";
 import OpenProjects from "../pages/OpenProjects";
 import PostPage from "../components/profile/PostPage";
 import AddOrEditBusiness from "../components/profile/AddOrEditBusiness";
+import AllBusinessReviews from "../components/crafterProfile/AllBusinessReviews";
+import HowItWorks from "../pages/HowItWorks";
+import AboutNailr from "../pages/AboutNailr";
+import PrivacyPolicy from "../pages/PrivacyPolicy";
+import TermsOfService from "../pages/TermsOfService";
+import ContactUs from "../pages/ContactUs";
 
 const AppRouter = () => {
 	return (
@@ -27,12 +31,20 @@ const AppRouter = () => {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/register" element={<RegisterPage />} />
-				<Route path="/search" element={<SearchPage />} />
+				<Route path="/how-it-works" element={<HowItWorks />} />
+				<Route path="/about" element={<AboutNailr />} />
+				<Route path="/privacy-policy" element={<PrivacyPolicy />} />
+				<Route path="/terms-of-service" element={<TermsOfService />} />
+				<Route path="/contact-us" element={<ContactUs />} />
 				<Route path="/projects" element={<OpenProjects />} />
 				<Route path="/crafters" element={<Crafters />} />
 				<Route path="/requests/:id" element={<PostDetailsPage />} />
 				<Route path="/showcases/:id" element={<PostPage />} />
 				<Route path="/crafter/:id" element={<CrafterProfilePage />} />
+				<Route
+					path="/businesses/:id/reviews"
+					element={<AllBusinessReviews />}
+				/>
 
 				<Route
 					path="/profile/:id"

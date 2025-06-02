@@ -79,22 +79,30 @@ function MessagesPage() {
 	}, [activeConversation]);
 
 	return (
-		<div className="d-flex" style={{ height: "85vh" }}>
+		<div className="row" style={{ height: "85vh" }}>
 			<div
-				className="border-end bg-white p-3"
-				style={{ width: "300px", overflowY: "auto" }}
+				className="col-4 border-end bg-white m-0 p-0 pt-4 px-3 pe-0"
+				style={{ overflowY: "auto" }}
 			>
-				<h5 className="text-danger fw-bold mb-1">
+				<h5
+					className="text-danger fw-bold mb-1"
+					style={{ fontSize: "clamp(1rem, 0.875rem + 0.625vw, 1.5rem)" }}
+				>
 					<i className="fa-solid fa-message me-2"></i>Messages
 				</h5>
-				<p className="text-muted small">Connect & collaborate with others.</p>
+				<p
+					className="text-muted small"
+					style={{ fontSize: "clamp(0.6rem, 0.45rem + 0.75vw, 1.2rem)" }}
+				>
+					Connect & collaborate with others.
+				</p>
 				<ConversationList
 					conversations={conversations}
 					activeConversation={activeConversation}
 					setActiveConversation={setActiveConversation}
 				/>
 			</div>
-			<div className="flex-grow-1 bg-light d-flex align-items-center justify-content-center">
+			<div className="col-8 bg-light d-flex align-items-center justify-content-center">
 				{activeConversation ? (
 					<ConversationView conversation={activeConversation} socket={socket} />
 				) : (

@@ -103,7 +103,7 @@ function PostDetailsPage() {
 						{images.map((img, index) => (
 							<div className="col-md-4 mb-3" key={index}>
 								<img
-									src={img}
+									src={API_URL + img}
 									alt={`Post Image ${index + 1}`}
 									className="img-fluid rounded shadow-sm"
 								/>

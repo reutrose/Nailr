@@ -1,4 +1,4 @@
-import { SquarePlus } from "lucide-react";
+import { CirclePlus, SquarePlus } from "lucide-react";
 import { useContext, useEffect, useState } from "react";
 import AuthContext from "../../contexts/AuthContext";
 import AddBusinessModal from "./AddOrEditBusiness";
@@ -45,8 +45,7 @@ function BusinessesBox({ profileOf, viewer }) {
 									className="btn btn-sky-subtle p-0 py-1 px-3"
 									onClick={() => nav("/crafters/new")}
 								>
-									<i className="fa-solid fa-plus"></i>
-									&nbsp;Add Business
+									<CirclePlus />
 								</button>
 							</div>
 						)}
@@ -60,7 +59,7 @@ function BusinessesBox({ profileOf, viewer }) {
 						</div>
 					</div>
 				) : (
-					<div className="row row-cols-2 g-4 my-2">
+					<div className="row row-cols-md-2 g-4 my-2">
 						{businesses && businesses.length ? (
 							businesses.map((business) => {
 								return (

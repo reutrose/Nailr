@@ -1,0 +1,14 @@
+@media (min-width: 768px) {
+	.hide-on-desktop {
+		display: none;
+	}
+}
+
+.avatar-button img {
+	width: 30px;
+	height: 30px;
+}
+
+.navbar-wrapper {
+	height: 70px;
+}

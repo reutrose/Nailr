@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { SquarePen, MapPin, CalendarCheck } from "lucide-react";
+import { SquarePen } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import ImageUploadModal from "./ImageUploadModal";
+import ImageUploadModal from "../shared/ImageUploadModal";
 import { formatDateToMonthYear } from "../../services/timeService";
 const API_URL = import.meta.env.VITE_API_URL;
 

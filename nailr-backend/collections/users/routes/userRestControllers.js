@@ -67,58 +67,6 @@ router.post("/login", loginLimiter, async (req, res) => {
 	}
 });
 
-router.get("/verify/:token", async (req, res) => {
-	try {
-		const user = await verifyEmail(req.params.token);
-		res.send(user);
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
-router.get("/check-email", async (req, res) => {
-	try {
-		const { email } = req.query;
-		if (!email) return handleError(res, 400, "Email is required");
-
-		const user = await getUserByEmail(email);
-		res.send({ exists: !!user });
-	} catch (error) {
-		handleError(res, 500, error.message);
-	}
-});
-
-router.post("/reset-password", async (req, res) => {
-	try {
-		const result = await resetPasswordRequest(req.body.email);
-		res.send({ success: result });
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
-router.post("/reset/:token", async (req, res) => {
-	try {
-		const user = await resetPassword(req.params.token, req.body.newPassword);
-		res.send(user);
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
-router.patch("/:id/password", auth, async (req, res) => {
-	try {
-		const user = await changePassword(
-			req.params.id,
-			req.body.currentPassword,
-			req.body.newPassword
-		);
-		res.send(user);
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
 router.get("/:id", async (req, res) => {
 	try {
 		const user = await getUserById(req.params.id);
@@ -137,46 +85,10 @@ router.get("/", auth, async (req, res) => {
 	}
 });
 
-router.get("/search/:query", auth, async (req, res) => {
-	try {
-		const users = await searchUsersByNameOrBusiness(req.params.query);
-		res.send(users);
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
-router.get("/crafters/profession/:profession", async (req, res) => {
-	try {
-		const users = await getCraftersByProfession(req.params.profession);
-		res.send(users);
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
-router.get("/crafters/location/:location", async (req, res) => {
-	try {
-		const users = await getCraftersByLocation(req.params.location);
-		res.send(users);
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
 router.get("/crafters", async (req, res) => {
 	try {
 		const users = await getAllCrafters(req.query);
 		res.send(users);
-	} catch (error) {
-		handleError(res, 400, error.message);
-	}
-});
-
-router.patch("/:id/change-user-type", auth, async (req, res) => {
-	try {
-		const user = await changeUserType(req.params.id, req.body);
-		res.send(user);
 	} catch (error) {
 		handleError(res, 400, error.message);
 	}

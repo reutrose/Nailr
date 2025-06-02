@@ -1,10 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { getAllBusinesses } from "../../services/businessService";
+import { useNavigate } from "react-router-dom";
+import useStarRenderer from "../../hooks/useStarRenderer";
 const API_URL = import.meta.env.VITE_API_URL;
 
 function FeaturedCrafters() {
 	const [crafters, setCrafters] = useState(null);
+	const nav = useNavigate();
+	const { renderStars } = useStarRenderer();
 
 	useEffect(() => {
 		const fetchCrafters = async () => {
@@ -33,8 +37,11 @@ function FeaturedCrafters() {
 					crafters.map((crafter) => {
 						return (
 							<div
-								className="d-flex justify-content-center text-center"
+								className="d-flex justify-content-center text-center cursor-pointer"
 								key={crafter._id}
+								onClick={() => {
+									nav(`/crafter/${crafter._id}`);
+								}}
 							>
 								<div
 									className="d-flex flex-column justify-content-between bg-white shadow-sm rounded-3"
@@ -73,27 +80,11 @@ function FeaturedCrafters() {
 										<p className="card-text" style={{ fontSize: "0.8rem" }}>
 											{crafter.description}
 										</p>
-										<div className="p-2">
-											<i
-												className="fa-solid fa-star"
-												style={{ color: "#febe7e" }}
-											></i>
-											<i
-												className="fa-solid fa-star"
-												style={{ color: "#febe7e" }}
-											></i>
-											<i
-												className="fa-solid fa-star"
-												style={{ color: "#febe7e" }}
-											></i>
-											<i
-												className="fa-solid fa-star"
-												style={{ color: "#febe7e" }}
-											></i>
-											<i
-												className="fa-solid fa-star"
-												style={{ color: "#febe7e" }}
-											></i>{" "}
+										<div className="p-2 d-flex justify-content-center">
+											{renderStars(crafter.averageRating, {
+												highlightColor: "#febe7e",
+												className: "mx-1",
+											})}
 										</div>
 										<p
 											className="card-text fw-bold"

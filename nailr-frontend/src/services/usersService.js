@@ -60,6 +60,11 @@ export const userLogin = async (email, password, loggedIn) => {
 	}
 };
 
+export const userLogout = async () => {
+	localStorage.removeItem("nailrToken");
+	sessionStorage.removeItem("nailrToken");
+};
+
 export const getTokenFromStorage = () => {
 	return (
 		localStorage.getItem("nailrToken") || sessionStorage.getItem("nailrToken")

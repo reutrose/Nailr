@@ -49,10 +49,18 @@ function ConversationList({
 							onError={(e) => (e.target.src = "/noPhoto.jpg")}
 						/>
 						<div>
-							<div className="fw-semibold">
+							<div
+								className="fw-semibold"
+								style={{ fontSize: "clamp(0.7rem, 0.625rem + 0.375vw, 1rem)" }}
+							>
 								{otherParticipant.firstName} {otherParticipant.lastName}
 							</div>
-							<div className="text-muted small">
+							<div
+								className="text-muted small"
+								style={{
+									fontSize: "clamp(0.6rem, 0.525rem + 0.375vw, 0.9rem)",
+								}}
+							>
 								{conv.lastMessage || "Start the conversation"}
 							</div>
 						</div>

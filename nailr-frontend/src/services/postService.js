@@ -1,5 +1,3 @@
-import axios from "axios";
-
 const API_URL = import.meta.env.VITE_API_URL;
 
 export const createPost = async (formData, token) => {
@@ -40,6 +38,27 @@ export const getAllRequestPosts = async () => {
 	try {
 		const response = await fetch(
 			`${API_URL}/posts/?postType=request`,
+			requestOptions
+		);
+		const result = await response.json();
+		return result;
+	} catch (error) {
+		console.error(error);
+	}
+};
+
+export const getAllShowcasePosts = async () => {
+	const myHeaders = new Headers();
+
+	const requestOptions = {
+		method: "GET",
+		headers: myHeaders,
+		redirect: "follow",
+	};
+
+	try {
+		const response = await fetch(
+			`${API_URL}/posts/?postType=showcase`,
 			requestOptions
 		);
 		const result = await response.json();
@@ -109,9 +128,38 @@ export const getPostsByBusiness = async (businessId) => {
 	}
 };
 
-export const updatePostById = async (id, data) => {
-	const res = await axios.put(`${API_URL}/posts/${id}`, data);
-	return res.data;
+export const updatePostById = async (token, id, data) => {
+	const myHeaders = new Headers();
+	myHeaders.append("x-auth-token", token);
+
+	const formdata = new FormData();
+	formdata.append("title", data.title);
+	formdata.append("description", data.description);
+	formdata.append(
+		"tags",
+		Array.isArray(data.tags) ? data.tags.join(",") : data.tags
+	);
+	formdata.append("location", data.location);
+
+	if (data.files?.length) {
+		for (const file of data.files) {
+			formdata.append("images", file);
+		}
+	}
+
+	const requestOptions = {
+		method: "PUT",
+		headers: myHeaders,
+		body: formdata,
+	};
+
+	try {
+		const response = await fetch(`${API_URL}/posts/${id}`, requestOptions);
+		const result = await response.json();
+		return result;
+	} catch (error) {
+		console.error(error);
+	}
 };
 
 export const deletePostById = async (postId, token) => {
